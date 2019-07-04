@@ -1,0 +1,26 @@
+---
+- name:  Ansible register variable basic example
+  hosts: web
+  tasks:
+  - name: shell 
+    shell: "find *.txt"
+    args:
+      chdir: /home/bhanu/
+    register: find_output
+  - debug:
+      var: find_output
+
+- hosts: web
+  tasks:
+    - debug:
+        msg: task1
+
+- name: Include task list in play
+  include: varSample4.yaml
+
+- hosts: web
+  tasks:
+    - debug:
+        msg: task10
+
+...

@@ -1,0 +1,44 @@
+---
+- name: Display file variable overriding playbook variable
+  hosts: common
+  vars_files:
+    - "group_vars/db"
+  vars:
+    mn: bhanu-vars
+  tasks:
+  - name: invars list
+    include_vars: group_vars/web
+  - debug:
+      msg: "hello :{{ansible_os_family}}, ******** my name : {{mn}}  ************"
+
+
+- name: Display file variable overriding playbook variable
+  hosts: all
+  tasks:
+  - name: invars list
+    include_vars: host_vars/15.213.56.126
+  - debug:
+      msg: "hello :{{ansible_os_family}}, ********* my name : {{mn}}  ************"
+
+- name: Display file variable overriding playbook variable
+  hosts: all
+  vars_files:
+    - "group_vars/db"
+  tasks:
+  - name: invars list
+    include_vars: host_vars/15.213.56.126
+  - debug:
+      msg: "hello :{{ansible_os_family}}, ********* my name : {{mn}}  ************"
+
+
+- name: Display file variable overriding playbook variable
+  hosts: all
+  vars_files:
+    - "group_vars/db"
+  tasks:
+  - name: invars list
+    include_vars: host_vars/15.213.56.126
+  - debug:
+      msg: "hello :{{ansible_os_family}}, ********* my age in db : {{ma}}  ************"
+
+...

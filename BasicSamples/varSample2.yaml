@@ -1,0 +1,72 @@
+---
+- name: Display file variable overriding playbook variable
+  hosts: web
+  vars_files:
+    - "vars.yaml"
+  vars:
+    http_port: 80
+    ma: 08
+    ansible_os_family: Default
+  tasks:
+  - debug:
+      msg: "hello :{{ansible_os_family}}, my ip : ****{{ip}}****, my name : {{mn}}, my age : {{ma}} ####### my company :{{mc}}"
+
+- name: Display of Facts
+  hosts: web
+  vars_files:
+    - "vars.yaml"
+  vars:
+    http_port: 80
+    ma: 08
+    ansible_os_family: Default
+  tasks:
+  - debug:
+      msg: "hello :{{ansible_os_family}}, my ip : ****{{ip}}****, my name : {{mn}}, my age : {{ma}} ####### my company :{{mc}}"
+  - debug:
+      msg: Hai hello !!!!!!{{ansible_python}}!!!!!!!!!
+
+- name: Display of Facts
+  hosts: web
+  vars_files:
+    - "vars.yaml"
+  vars:
+    http_port: 80
+    ma: 08
+    ansible_os_family: Default
+  vars_prompt:
+   - name: myname
+     prompt: "Whats your name :"
+     private: no
+   - name: ma
+     prompt: "Whats your age :"
+  tasks:
+  - debug: msg="hello {{myname,ma}} and my age {{ma}}"
+
+- name: Display file variable overriding playbook variable
+  hosts: web
+  vars_files:
+    - "vars.yaml"
+  vars:
+    http_port: 80
+    ma: 08
+    ansible_os_family: Default
+  tasks:
+  - debug:
+      msg: "hello :{{ansible_os_family}}, my ip : ****{{ip}}****, my name : {{mn}}, my age : {{ma}} ####### my company :{{mc}}"
+
+- name: Display of Facts
+  hosts: web
+  vars:
+    ma: 08
+  vars_prompt:
+   - name: myname
+     prompt: "Whats your name 2:"
+     private: no
+   - name: ma
+     prompt: "Whats your age 2:"
+  tasks:
+  - debug: msg="hello {{myname,ma}} and my age {{ma}}"
+
+...
+
+

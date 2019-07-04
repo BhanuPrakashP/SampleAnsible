@@ -1,0 +1,18 @@
+---
+- name: something1
+  hosts: web
+  tasks:
+  - name: create file 
+    file: dest=/opt/b123.txt mode=600 state=touch owner=root
+  - name: start the httpd service
+    service: name=httpd state=started enabled=yes
+  - name: create package wget
+    package: name=wget state=present
+  - name: create group
+    group: name=deploy2 state=present
+  - name: create user
+    user: name=deploy-user2 shell=/bin/bash state=present groups=deploy2 append=yes
+  - name: create file
+    file: dest=/opt/index99.html  mode=755 state=touch owner=root
+...
+

@@ -1,0 +1,59 @@
+---
+- name: Display group variablea and undefined variable
+  hosts: db
+  tasks:
+  - debug:
+      var: port
+  - debug:
+      var: ansible_os_family
+  - debug:
+      msg: Hello !!!!!!!!!!!!!!{{mn}}!!!!!!!!!!!!!!!!
+ # - debug:
+ #     msg: You are !!!!!!!{{undef}}!!!!!!!!!
+  - debug:
+      var: ansible_os_family,port,mn
+
+- name: Display host variable
+  hosts: web
+  vars:
+    http_port: 80
+  tasks:
+  - debug: 
+      var: ip
+  - debug:
+      var: ansible_os_family
+  - debug: var=http_port
+
+- name: Display group variable and message
+  hosts: web
+  vars:
+    http_port: 80
+  tasks:
+  - debug:
+      msg: "hello :{{ansible_os_family}}, it's me : {{mn}}.................."
+  - debug:
+      var: ansible_os_family
+  - debug: var=http_port
+
+- name: Display group variable ovrriding host variable and message
+  hosts: web
+  vars:
+    http_port: 80
+  tasks:
+  - debug:
+      msg: "hello :{{ansible_os_family}}, my ip : ****{{ip}}****, my name : {{mn}}, my age : {{ma}} "
+  - debug:
+      var: ansible_os_family
+  - debug: var=http_port
+
+- name: Display playbook variable overriding inventory variables
+  hosts: web
+  vars:
+    http_port: 80
+    ip: 111
+  tasks:
+  - debug:
+      msg: "hello :{{ansible_os_family}}, my ip : ****{{ip}}****, my name : {{mn}}, my age : {{ma}} ####### my company :{{mc}}"
+...
+
+

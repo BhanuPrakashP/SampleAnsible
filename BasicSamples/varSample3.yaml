@@ -1,0 +1,37 @@
+---
+- name: Display file variable overriding playbook variable
+  hosts: common
+  vars_files:
+    - "vars.yaml"
+  vars:
+    http_port: 80
+    ma: 08
+    ansible_os_family: Default
+  vars_prompt:
+   - name: myname
+     prompt: "Whats your name :"
+     private: no
+   - name: ma
+     prompt: "Whats your age :"
+
+  tasks:
+  - name: invars list
+    include_vars: invars.yaml
+  - debug:
+      msg: "hello :{{ansible_os_family}}, my ip : ****{{ip}}****, my name : {{mn}}, my age : {{ma}} ####### my company :{{mc}}"
+
+
+- name: Display file variable overriding playbook variable
+  hosts: all
+  vars_prompt:
+   - name: myname
+     prompt: "Whats your name :"
+     private: no
+   - name: ma
+     prompt: "Whats your age :"
+  tasks:
+  - name: invars list
+    include_vars: invars.yaml
+  - debug:
+      msg: "hello :{{ansible_os_family}}, my ip : ****{{ip}}****, my name : {{mn}}, my age : {{ma}} ####### my company :{{mc}}"
+...

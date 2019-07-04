@@ -1,0 +1,23 @@
+---
+- name: something1
+  hosts: all
+  tasks:
+  - name: create file
+    win_file: dest=c:\\hp\\bhanup state=directory
+  - name: create file
+    win_file: dest=c:\\hp\\bhanup\\index.html state=touch
+  - name: edit file aaaa
+    win_lineinfile: path=c:\\hp\\bhanup\\index.html line='<html><h1> welcome HPE, you are in windows machine, if not, its not my code</h1></html>'
+    when: ansible_os_family != "Redhat"
+- name: something2
+  hosts: all
+  tasks:
+  - name: create file
+    file: dest=/home/bhanup state=directory
+  - name: create file
+    file: dest=/home/bhanup/index.html state=touch
+  - name: edit file aaaa
+    lineinfile: path=/home/bhanu/index.html line='<html><h1> welcome HPE, you are in linux machine, if not, its not my code</h1></html>'
+    when: ansible_os_family == "Redhat"
+...
+
