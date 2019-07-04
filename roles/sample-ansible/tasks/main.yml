@@ -4,3 +4,35 @@
     yum: name=httpd
   - name: start the httpd service
     service: name=httpd state=started
+    when: ansible_os_family == "Redhat"
+  - debug:
+      msg: "hello :{{ansible_os_family}}, my name : {{mn}}  ####### "
+  - name: Include task list in play
+    include: ./roles/sample-ansible/templates/main.yaml
+  - name: create directory
+    file: dest=/home/bhanu/roles/sample-ansible/files/ state=directory
+  - name: Execute the script
+    command: sh /home/bhanu/roles/sample-ansible/files/test.sh
+  - name: shell
+    shell: "find *.txt"
+    args:
+      chdir: /home/bhanu/
+    register: find_output
+  - debug:
+      var: find_output
+  - name: create file
+    file: dest=/home/bhanu state=directory
+  - name: create file
+    file: dest=/home/bhanu/index.html state=touch
+  - name: edit file aaaa
+    lineinfile: path=/home/bhanu/index.html line='<html><h1> welcome HPE, you are in linux machine, if not, its not my code</h1></br</br>><h2> list of file = {{find_output.stdout_lines}}</html>'
+  - name: Include task list in play
+    include: ./roles/sample-ansible/templates/copyIndex.yaml
+  - name: install
+    yum: name={{ item }} state=installed
+    with_items:
+      - wireshark
+      - unzip
+      - vim
+
+

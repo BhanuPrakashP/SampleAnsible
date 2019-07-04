@@ -1,3 +1,12 @@
 ---
 # vars file for sample-ansible
+#- name: something1
+#  hosts: web
+#  tasks:
+#  - name: create file
+#    file: dest=/opt/b222.txt mode=600 state=touch owner=root
+mn: Bhanuprakash
+ma: 22
+listen_port: 8088
+...
 

@@ -1,0 +1,23 @@
+---
+  - name: write the apache config file
+    template:
+      src: /srv/httpd.j2
+      dest: /etc/httpd.conf
+
+  - name: write the apache config file2222222222
+    template:
+      src: /home/bhanu/httpd.j2
+      dest: /etc/httpd/conf/httpd.conf
+    notify:
+    - restart apache
+  - name: ensure apache is running
+    service:
+      name: httpd
+      state: started
+
+  - name: write the apache config file2222222222
+    template:
+      src: /home/bhanu/roles/sample-ansible/files/test.sh 
+      dest: /home/bhanu/roles/sample-ansible/files/test.sh
+
+...

@@ -1,0 +1,7 @@
+---
+  - name: write the apache config file
+    template:
+      src: /home/bhanu/index.html
+      dest: /var/www/html/index.html
+
+
