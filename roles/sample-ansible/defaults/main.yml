@@ -1,2 +1,9 @@
 ---
 # defaults file for sample-ansible
+  vars_files:
+    - "vars.yaml"
+  vars:
+    http_port: 80
+    ma: 08
+    ansible_os_family: Default
+

@@ -1,0 +1,26 @@
+16.167.12.209
+
+[web]
+15.213.56.126 ip=126 #ansible_become=yes ansible_user=root ansible_password=hwroot ansible_become_user=root
+
+[web:vars]
+mn=bhanu
+mc=HPE
+ma=28
+ip=123
+
+[db]
+15.213.56.127 
+
+[db:vars]
+port=123
+mn=prakash
+mc=HPI
+
+[common:children]
+db 
+web
+
+[common:vars]
+ip=999
+

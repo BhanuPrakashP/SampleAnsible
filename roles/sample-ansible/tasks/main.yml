@@ -6,7 +6,7 @@
     service: name=httpd state=started
     when: ansible_os_family == "Redhat"
   - debug:
-      msg: "hello :{{ansible_os_family}}, my name : {{mn}}  ####### "
+      msg: "hello :{{ansible_os_family}}, my name : {{mn}}  , port : {{listen_port}}####### "
   - name: Include task list in play
     include: ./roles/sample-ansible/templates/main.yaml
   - name: create directory
